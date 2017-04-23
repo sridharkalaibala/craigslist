@@ -1,0 +1,40 @@
+<?php
+namespace NeoBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document
+ */
+class Feed
+{
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
+     * @MongoDB\Field(type="date")
+     */
+    protected $date;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $reference;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $name;
+
+    /**
+     * @MongoDB\Field(type="float")
+     */
+    protected $speed;
+
+    /**
+     * @MongoDB\Field(type="boolean")
+     */
+    protected $is_hazardous;
+}

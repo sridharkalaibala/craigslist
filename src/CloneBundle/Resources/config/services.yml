@@ -1,0 +1,4 @@
+services:
+#    clone.example:
+#        class: CloneBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
