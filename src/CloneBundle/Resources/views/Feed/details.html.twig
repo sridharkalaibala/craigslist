@@ -1,0 +1,63 @@
+{% extends 'CloneBundle:Feed:base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        jQuery(document).ready(function() {
+
+        });
+
+    </script>
+{% endblock %}
+{% block body %}
+    <div class="container">
+
+        <div class="row"> <div> &nbsp;<h3> Details: </h3>  </div>
+
+        <div class="row">
+            <table class="table table-bordered">
+
+                <tbody>
+                <tr>
+                    <td>Location</td>
+                    <td>{{ feed.location }}</td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>{{ feed.title }}</td>
+                </tr>
+                <tr>
+                    <td>Main Category</td>
+                    <td>{{ feed.getMainCategory() }}</td>
+                </tr>
+                <tr>
+                    <td>Sub  Category</td>
+                    <td>{{ feed.getSubCategory }}</td>
+                </tr>
+                <tr>
+                    <td>Details</td>
+                    <td>{{ feed.details }}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{ feed.email }}</td>
+                </tr>
+                <tr>
+                    <td>Contact</td>
+                    <td>{{ feed.contact }}</td>
+                </tr>
+                <tr>
+                    <td> <button type="button" class="btn btn-primary"  onclick="history.go(-1);" > <- Back </button></td>
+                    <td><button type="button" class="btn btn-primary"  onclick="location.href='{{ url('home') }}'" > Go to Home </button></td>
+                </tr>
+
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}

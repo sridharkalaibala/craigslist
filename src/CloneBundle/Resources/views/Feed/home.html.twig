@@ -1,0 +1,67 @@
+{% extends 'CloneBundle:Feed:base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        jQuery(document).ready(function() {
+            $.ajax({
+                type: 'get',
+                url: 'getData',
+                success: function (json) {
+                    $.each(json, function(i, value) {
+                        if(i != 'feed_locations') {
+                            var sub_catagories = ''
+                            $.each(value, function(j, sc) {
+                                sub_catagories += ' <li> <a href="list?main='+i+'&sub='+sc+'">'+sc+'</a></li>';
+                            });
+
+                            var panel = '<div class="col-xs-4">'
+                                +'<div class="panel panel-primary">'
+                                +'<div class="panel-heading">'+i+'</div>'
+                                +'<div class="panel-body">'
+                                +'<p> <ul type="square"> '+sub_catagories+' </ul></p>'
+                                +'</div> </div></div>';
+
+                            $('#panels').append(panel);
+                        }else {
+                            var locations = ''
+                            $.each(value, function(k, value) {
+                                locations += ' <option value="'+value+'">'+value+'</option>';
+                            });
+
+                            var html = '<div class="form-group col-xs-4 pull-right">'
+                                        +' <label for="sel1">Select Location:</label>'
+                                        +' <select class="form-control" id="location_select">'
+                                        +locations
+                                        +' </select> </div>';
+
+
+                            $('#locations').append(html);
+                        }
+
+                    });
+                }
+            });
+
+            $('#panels').on('click', 'a', function() {
+                $(this).attr('href', function() {
+                    return this.href + '&location='+$('#location_select').val();
+                });
+            });
+        });
+
+    </script>
+{% endblock %}
+{% block body %}
+    <div class="container">
+
+        <div class="row"> <div id="locations"> &nbsp; </div> </div>
+
+        <div class="row" id="panels">
+
+        </div>
+    </div>
+{% endblock %}

@@ -1,5 +1,5 @@
 <?php
-namespace NeoBundle\Document;
+namespace CloneBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
@@ -14,27 +14,40 @@ class Feed
     protected $id;
 
     /**
-     * @MongoDB\Field(type="date")
+     * @MongoDB\Field(type="string")
      */
-    protected $date;
+    protected $main_category;
 
     /**
      * @MongoDB\Field(type="string")
      */
-    protected $reference;
+    protected $sub_category;
 
     /**
      * @MongoDB\Field(type="string")
      */
-    protected $name;
+    protected $title;
 
     /**
-     * @MongoDB\Field(type="float")
+     * @MongoDB\Field(type="string")
      */
-    protected $speed;
+    protected $details;
 
     /**
-     * @MongoDB\Field(type="boolean")
+     * @MongoDB\Field(type="string")
      */
-    protected $is_hazardous;
+    protected $location;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $email;
+
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $contact;
+
+
 }

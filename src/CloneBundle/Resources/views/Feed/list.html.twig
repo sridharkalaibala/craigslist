@@ -1,0 +1,31 @@
+{% extends 'CloneBundle:Feed:base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        jQuery(document).ready(function() {
+
+        });
+
+    </script>
+{% endblock %}
+{% block body %}
+    <div class="container">
+
+        <div class="row"> <div> &nbsp;<strong> Category: </strong> {{ main_category }}  &nbsp; &nbsp;<strong> Sub Category: </strong> {{ sub_category }} </div> </div>
+
+        <div class="row">
+
+            <ul>
+                {% for item in feeds %}
+                    <li><a href="details?id={{ item._id }}">{{ item.title }}</a></li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        <div><button type="button" class="btn btn-primary"  onclick="history.go(-1);" > <- Back </button></div>
+    </div>
+{% endblock %}

@@ -2,9 +2,11 @@
 namespace CloneBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 
 /**
- * @MongoDB\Document
+ * @MongoDB\Document(collection="Feeds")
  */
 class Feed
 {
@@ -14,29 +16,47 @@ class Feed
     protected $id;
 
     /**
-     * @MongoDB\Field(type="date")
+     * @MongoDB\Field(type="string")
+     * @Assert\NotBlank()
      */
-    protected $date;
+    protected $main_category;
+
+    /**
+     * @MongoDB\Field(type="string")
+     * @Assert\NotBlank()
+     */
+    protected $sub_category;
+
+    /**
+     * @MongoDB\Field(type="string")
+     * @Assert\NotBlank()
+     */
+    protected $title;
 
     /**
      * @MongoDB\Field(type="string")
      */
-    protected $reference;
+    protected $details;
 
     /**
      * @MongoDB\Field(type="string")
      */
-    protected $name;
+    protected $location;
 
     /**
-     * @MongoDB\Field(type="float")
+     * @MongoDB\Field(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
-    protected $speed;
+    protected $email;
+
 
     /**
-     * @MongoDB\Field(type="boolean")
+     * @MongoDB\Field(type="string")
      */
-    protected $is_hazardous;
+    protected $contact;
+
+
 
     /**
      * Get id
@@ -49,112 +69,156 @@ class Feed
     }
 
     /**
-     * Set date
+     * Set mainCategory
      *
-     * @param date $date
+     * @param string $mainCategory
      * @return $this
      */
-    public function setDate($date)
+    public function setMainCategory($mainCategory)
     {
-        $this->date = $date;
+        $this->main_category = $mainCategory;
         return $this;
     }
 
     /**
-     * Get date
+     * Get mainCategory
      *
-     * @return date $date
+     * @return string $mainCategory
      */
-    public function getDate()
+    public function getMainCategory()
     {
-        return $this->date;
+        return $this->main_category;
     }
 
     /**
-     * Set reference
+     * Set subCategory
      *
-     * @param string $reference
+     * @param string $subCategory
      * @return $this
      */
-    public function setReference($reference)
+    public function setSubCategory($subCategory)
     {
-        $this->reference = $reference;
+        $this->sub_category = $subCategory;
         return $this;
     }
 
     /**
-     * Get reference
+     * Get subCategory
      *
-     * @return string $reference
+     * @return string $subCategory
      */
-    public function getReference()
+    public function getSubCategory()
     {
-        return $this->reference;
+        return $this->sub_category;
     }
 
     /**
-     * Set name
+     * Set title
      *
-     * @param string $name
+     * @param string $title
      * @return $this
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
         return $this;
     }
 
     /**
-     * Get name
+     * Get title
      *
-     * @return string $name
+     * @return string $title
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * Set speed
+     * Set details
      *
-     * @param float $speed
+     * @param string $details
      * @return $this
      */
-    public function setSpeed($speed)
+    public function setDetails($details)
     {
-        $this->speed = $speed;
+        $this->details = $details;
         return $this;
     }
 
     /**
-     * Get speed
+     * Get details
      *
-     * @return float $speed
+     * @return string $details
      */
-    public function getSpeed()
+    public function getDetails()
     {
-        return $this->speed;
+        return $this->details;
     }
 
     /**
-     * Set isHazardous
+     * Set location
      *
-     * @param boolean $isHazardous
+     * @param string $location
      * @return $this
      */
-    public function setIsHazardous($isHazardous)
+    public function setLocation($location)
     {
-        $this->is_hazardous = $isHazardous;
+        $this->location = $location;
         return $this;
     }
 
     /**
-     * Get isHazardous
+     * Get location
      *
-     * @return boolean $isHazardous
+     * @return string $location
      */
-    public function getIsHazardous()
+    public function getLocation()
     {
-        return $this->is_hazardous;
+        return $this->location;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return $this
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string $email
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set contact
+     *
+     * @param string $contact
+     * @return $this
+     */
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+        return $this;
+    }
+
+    /**
+     * Get contact
+     *
+     * @return string $contact
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }

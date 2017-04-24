@@ -1,0 +1,45 @@
+{% extends 'CloneBundle:Feed:base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        jQuery(document).ready(function() {
+            $("#home").parent().removeClass('active');
+            $("#post").parent().addClass('active');
+            $( "#feed_main_category" ).change(function() { //can use #id here too
+                $.ajax({
+                    type: 'get',
+                    url: 'getSubCategories',
+                    data: {
+                        main_category:this.value
+                    },
+                    success: function (json) {
+                        $('#feed_sub_category').empty();
+                        $.each(json, function(i, value) {
+                            $('#feed_sub_category').append($('<option>').text(value).attr('value', value));
+                        });
+                    }
+                });
+            });
+
+            $( "#feed_main_category" ).change();
+
+        });
+    </script>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>New Post</h1>
+                {{ form_start(createForm) }}
+                {{ form_widget(createForm) }}
+                <button type="submit" class="btn btn-primary">Save</button>
+                {{ form_end(createForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
